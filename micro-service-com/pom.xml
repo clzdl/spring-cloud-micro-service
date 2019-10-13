@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.cl.springcloud</groupId>
+    <artifactId>micro-service-parent</artifactId>
+    <version>0.0.1</version>
+  </parent>
+  <artifactId>micro-service-com</artifactId>
+  <name>micro-service-com</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     <!--  MyBatis Generator  -->
+    <!--  Java接口和实体类  -->
+    <targetJavaProject>${basedir}/src/main/java</targetJavaProject>
+    <targetMapperPackage>com.microservice.common.persistence.dao</targetMapperPackage>
+    <targetModelPackage>com.microservice.common.persistence.entity</targetModelPackage>
+    <!--  XML生成路径  -->
+    <targetResourcesProject>${basedir}/src/main/resources</targetResourcesProject>
+    <targetXMLPackage>mapper</targetXMLPackage>
+    <!--  依赖版本  -->
+    <mapper.version>3.4.6</mapper.version>
+    <mysql.version>5.1.29</mysql.version>
+  </properties>
+  <dependencies>
+  	 <dependency>
+       <groupId>cl.basic</groupId>
+       <artifactId>framework-mybatis</artifactId>
+       <version>0.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+        <plugin>
+          <groupId>org.mybatis.generator</groupId>
+          <artifactId>mybatis-generator-maven-plugin</artifactId>
+          <version>1.3.2</version>
+          <configuration>
+              <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+              <overwrite>true</overwrite>
+              <verbose>true</verbose>
+          </configuration>
+          <dependencies>
+              <dependency>
+                  <groupId>mysql</groupId>
+                  <artifactId>mysql-connector-java</artifactId>
+                  <version>${mysql.version}</version>
+              </dependency>
+              <dependency>
+                  <groupId>tk.mybatis</groupId>
+                  <artifactId>mapper</artifactId>
+                  <version>${mapper.version}</version>
+              </dependency>
+          </dependencies>
+        </plugin>
+    </plugins>
+  </build>
+</project>
